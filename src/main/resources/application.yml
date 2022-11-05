@@ -1,0 +1,14 @@
+server:
+    port: 9091
+    servlet:
+        context-path: /library
+
+spring:
+    jpa:
+        hibernate:
+            ddl-auto: update
+    datasource:
+        url: jdbc:mysql://$database-1.c4nhpsb7u0wq.us-east-2.rds.amazonaws.com
+    application:
+        name: library
+
