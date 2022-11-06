@@ -19,9 +19,10 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-                container('maven'){
-                    maven(command: "-B clean deploy")
-                }
+                sh "mvn -B clean deploy"
+//                 container('maven'){
+//                     maven(command: "-B clean deploy")
+//                 }
             }
         }
     }
