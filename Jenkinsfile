@@ -6,6 +6,7 @@ pipeline {
     options {
         disableConcurrentBuilds()
     }
+    agent any
     stages {
         stage('Set Pipeline Name') {
             steps {
@@ -16,14 +17,15 @@ pipeline {
         }
         stage('Build Maven') {
             steps {
-                sh "mvn -B clean deploy"
+                sh "mvn -B clean package"
+//                 container('maven'){
+//                     maven(command: "-B clean deploy")
+//                 }
             }
         }
-        stage('Build Image') {
+        stage('Build Docker Image') {
             steps {
-                agent {
-                    dockerfile true
-                }
+                sh "docker build -t ankur89kumawat/library:latest ."
             }
         }
     }
