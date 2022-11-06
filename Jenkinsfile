@@ -6,9 +6,6 @@ pipeline {
     options {
         disableConcurrentBuilds()
     }
-    agent {
-        dockerfile true
-    }
     stages {
         stage('Set Pipeline Name') {
             steps {
@@ -17,12 +14,16 @@ pipeline {
                 }
             }
         }
-        stage('Build Image') {
+        stage('Build Maven') {
             steps {
                 sh "mvn -B clean deploy"
-//                 container('maven'){
-//                     maven(command: "-B clean deploy")
-//                 }
+            }
+        }
+        stage('Build Image') {
+            steps {
+                agent {
+                    dockerfile true
+                }
             }
         }
     }
