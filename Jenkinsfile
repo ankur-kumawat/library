@@ -20,7 +20,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 container('maven'){
-                    maven("-B clean deploy")
+                    maven(command: "-B clean deploy")
                 }
             }
         }
