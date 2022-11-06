@@ -6,7 +6,11 @@ pipeline {
     options {
         disableConcurrentBuilds()
     }
-    agent any
+    agent {
+        docker {
+            image 'maven:3.8.6'
+        }
+    }
     stages {
         stage('Set Pipeline Name') {
             steps {
